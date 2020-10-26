@@ -1,0 +1,22 @@
+resources:
+- name: petclinic
+  type: git
+  source:
+    uri: https://github.com/jasonmorgan/spring-petclinic.git
+jobs:
+- name: Tests
+  plan:
+  - get: petclinic
+  - task: unit
+    file: ci/tasks/unit-tests.yaml
+- name: Build
+  plan:
+  - get: petclinic
+  - task: build bin
+    file: ci/tasks/compile.yaml
+  - task: handoff to TBS
+    file: ci/tasks/handoff-to-tbs.yaml
+- name: Notify
+  plan:
+  - task: push to slack
+    file: update slack
