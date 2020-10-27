@@ -1,0 +1,17 @@
+---
+platform: linux
+image_resource:
+  type: registry-image
+  source: 
+    repository: jasonmorgan/tanzue2e
+
+inputs:
+  - name: source
+  - name: tanzu-e2e
+
+params:
+  TBS_KUBECONFIG:
+  IMAGE_NAME:
+
+run:
+  path: "tanzu-e2e/ci/tasks/handoff-to-tbs.sh"
