@@ -25,4 +25,7 @@ jobs:
       TBS_KUBECONFIG: ((kubeconfig))
       IMAGE_NAME: ((image_name))
       TAG: ((tag))
+      REG_USER: ((harbor.user))
+      REG_PASS: ((harbor.password))
+      REG: ((harbor.reg))
     file: tanzu-e2e/ci/tasks/handoff-to-tbs.yaml

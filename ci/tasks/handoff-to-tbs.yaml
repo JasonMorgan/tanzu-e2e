@@ -13,6 +13,9 @@ params:
   TBS_KUBECONFIG:
   IMAGE_NAME:
   TAG:
+  REG_USER:
+  REG_PASS:
+  REG:
 
 run:
   path: "/bin/bash"

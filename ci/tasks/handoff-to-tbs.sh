@@ -3,6 +3,7 @@
 echo "$TBS_KUBECONFIG" | base64 -d > ~/config
 export KUBECONFIG=~/config
 kp image status "$IMAGE_NAME" > /dev/null 2>&1 || image=0
+docker login -u "$REG_USER" -p "$REG_PASS" "$REG_URL"
 # if [[ $image != 0 ]]; then
 #   kp image patch "$IMAGE_NAME" --local-path source/app.jar -w
 # else
