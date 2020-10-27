@@ -15,4 +15,6 @@ params:
   TAG:
 
 run:
-  path: "tanzu-e2e/ci/tasks/handoff-to-tbs.sh"
+  path: "/bin/bash"
+  args:
+  - "tanzu-e2e/ci/tasks/handoff-to-tbs.sh"
