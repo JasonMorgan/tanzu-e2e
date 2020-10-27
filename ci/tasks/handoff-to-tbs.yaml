@@ -3,7 +3,7 @@ platform: linux
 image_resource:
   type: registry-image
   source: 
-    repository: jasonmorgan/tanzue2e
+    repository: rjmo/tanzue2e
 
 inputs:
   - name: source
