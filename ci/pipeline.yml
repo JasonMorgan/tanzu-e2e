@@ -25,4 +25,4 @@ jobs:
       TBS_KUBECONFIG: ((kubeconfig))
       IMAGE_NAME: ((image_name))
       TAG: ((tag))
-    file: ci/tasks/handoff-to-tbs.yaml
+    file: tanzu-e2e/ci/tasks/handoff-to-tbs.yaml
