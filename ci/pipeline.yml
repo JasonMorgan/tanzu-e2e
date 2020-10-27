@@ -1,5 +1,5 @@
 resources:
-- name: petclinic
+- name: source
   type: git
   source:
     uri: https://github.com/jasonmorgan/spring-petclinic.git
@@ -16,7 +16,7 @@ jobs:
 #     file: ci/tasks/unit-tests.yaml
 - name: build
   plan:
-  - get: petclinic
+  - get: source
   - get: tanzu-e2e
   # - task: build bin
   #   file: ci/tasks/compile.yaml
