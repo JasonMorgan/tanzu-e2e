@@ -14,14 +14,15 @@ jobs:
 #   - get: petclinic
 #   - task: unit
 #     file: ci/tasks/unit-tests.yaml
-- name: Build
+- name: build
   plan:
   - get: petclinic
   - get: tanzu-e2e
   # - task: build bin
   #   file: ci/tasks/compile.yaml
-  - task: handoff to TBS
+  - task: handoff-to-tbs
     params:
       TBS_KUBECONFIG: ((kubeconfig))
       IMAGE_NAME: ((image_name))
+      TAG: ((tag))
     file: ci/tasks/handoff-to-tbs.yaml

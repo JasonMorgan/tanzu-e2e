@@ -12,5 +12,5 @@ kp image status "$IMAGE_NAME" > /dev/null 2>&1 || image=0
 if [[ $image != 0 ]]; then
   kp image patch "$IMAGE_NAME" --local-path source -w
 else
-  kp image create "$IMAGE_NAME" --local-path source -w
+  kp image create "$IMAGE_NAME" --tag "$TAG" --local-path source -w
 fi

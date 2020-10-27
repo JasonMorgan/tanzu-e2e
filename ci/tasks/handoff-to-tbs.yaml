@@ -12,6 +12,7 @@ inputs:
 params:
   TBS_KUBECONFIG:
   IMAGE_NAME:
+  TAG:
 
 run:
   path: "tanzu-e2e/ci/tasks/handoff-to-tbs.sh"
