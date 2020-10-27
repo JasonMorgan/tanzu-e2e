@@ -27,5 +27,5 @@ jobs:
       TAG: ((tag))
       REG_USER: ((harbor.user))
       REG_PASS: ((harbor.password))
-      REG: ((harbor.reg))
+      REG_URL: ((harbor.reg))
     file: tanzu-e2e/ci/tasks/handoff-to-tbs.yaml

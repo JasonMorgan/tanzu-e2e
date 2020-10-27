@@ -15,7 +15,7 @@ params:
   TAG:
   REG_USER:
   REG_PASS:
-  REG:
+  REG_URL:
 
 run:
   path: "/bin/bash"
