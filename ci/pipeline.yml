@@ -9,17 +9,29 @@ resources:
     uri: https://github.com/jasonmorgan/tanzu-e2e.git
 
 jobs:
-# - name: Tests
+- name: Testing
+  plan:
+  - get: source
+    trigger: true
+  - get: tanzu-e2e
+  - task: run-tests
+    file: ci/tasks/run-tests.yaml
+# - name: Compile
 #   plan:
-#   - get: petclinic
-#   - task: unit
-#     file: ci/tasks/unit-tests.yaml
+#   - get: source
+#     trigger: true
+#     passed: Testing
+#   - get: tanzu-e2e
+#   - task: compile-code
+#     file: ci/tasks/compile.yaml
 - name: build
   plan:
   - get: source
+    trigger: true
+    passed: Testing
   - get: tanzu-e2e
-  # - task: build bin
-  #   file: ci/tasks/compile.yaml
+  - task: compile-code
+    file: ci/tasks/compile.yaml
   - task: handoff-to-tbs
     params:
       TBS_KUBECONFIG: ((kubeconfig))

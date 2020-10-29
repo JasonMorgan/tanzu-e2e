@@ -14,4 +14,4 @@ params:
 run:
   path: "/bin/bash"
   args:
-  - "tanzu-e2e/ci/tasks/compile.sh"
+  - "tanzu-e2e/ci/tasks/run-tests.sh"
