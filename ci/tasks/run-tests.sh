@@ -1,5 +1,3 @@
 #!/bin/bash
 
-cd source
-
-./gradlew test
+source/gradlew test
