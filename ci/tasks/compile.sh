@@ -1,3 +1,3 @@
 #!/bin/bash
-
-source/mvnw package
+cd source
+./mvnw package

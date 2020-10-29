@@ -1,3 +1,3 @@
 #!/bin/bash
-ls source
-source/mvnw test
+cd source
+./mvnw test
