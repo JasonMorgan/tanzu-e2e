@@ -22,6 +22,7 @@ jobs:
   - get: tanzu-e2e
   - task: run-tests
     file: tanzu-e2e/ci/tasks/run-tests.yaml
+
 - name: build
   plan:
   - get: source
@@ -40,6 +41,7 @@ jobs:
       REG_PASS: ((harbor.password))
       REG_URL: ((harbor.reg))
     file: tanzu-e2e/ci/tasks/handoff-to-tbs.yaml
+    
 - name: update-cluster-config
   plan: 
   - get: cluster-repo
