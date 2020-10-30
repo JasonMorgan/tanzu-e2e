@@ -3,6 +3,11 @@ resources:
   type: git
   source:
     uri: https://github.com/jasonmorgan/spring-petclinic.git
+- name: cluster-repo
+  type: git
+  source:
+    uri: https://github.com/JasonMorgan/tanzu-cluster-config.git
+    private_key: ((git.ssh-key))
 - name: tanzu-e2e
   type: git
   source:
@@ -34,3 +39,18 @@ jobs:
       REG_PASS: ((harbor.password))
       REG_URL: ((harbor.reg))
     file: tanzu-e2e/ci/tasks/handoff-to-tbs.yaml
+- name: update-cluster-config
+  plan: 
+  - get: cluster-repo
+  - get: tanzu-e2e
+  - get: source
+    trigger: true
+    passed:
+    - testing
+    - build
+  - task: update-cluster-config
+    file: tanzu-e2e/ci/tasks/update-repo.yaml
+    params:
+      TBS_KUBECONFIG: ((kubeconfig))
+      IMAGE_NAME: ((image_name))
+      DEPLOYMENT_MANIFEST: ((deployment_manifest))

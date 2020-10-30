@@ -1,0 +1,23 @@
+---
+platform: linux
+image_resource:
+  type: registry-image
+  source: 
+    repository: rjmo/tanzu-e2e
+
+inputs:
+  - name: cluster-repo
+  - name: tanzu-e2e
+
+outputs:
+- name: cluster-repo
+
+params:
+  TBS_KUBECONFIG:
+  IMAGE_NAME:
+  DEPLOYMENT_MANIFEST:
+
+run:
+  path: "/bin/bash"
+  args:
+  - "tanzu-e2e/ci/tasks/update-repo.sh"
