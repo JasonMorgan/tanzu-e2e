@@ -9,6 +9,8 @@ CONTENT=$(sed "s|image: $PATTERN.*|image: $NEW_IMAGE|" cluster-repo/"$DEPLOYMENT
 echo -n "$CONTENT" > cluster-repo/"$DEPLOYMENT_MANIFEST"
 
 pushd cluster-repo || exit 1
+git config user.email "concourse@59s.io"
+git config user.name "concourse-ci"
 git add "$DEPLOYMENT_MANIFEST"
 git commit -m "Manifest updated by concourse pipeline."
 popd || exit 1
