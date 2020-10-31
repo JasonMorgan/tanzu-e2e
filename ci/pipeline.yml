@@ -3,12 +3,14 @@ resources:
   type: git
   source:
     uri: https://github.com/jasonmorgan/spring-petclinic.git
+    branch: main
 - name: cluster-repo
   type: git
   source:
     uri: https://github.com/JasonMorgan/tanzu-cluster-config.git
-    user: ((git.username))
+    username: ((git.username))
     password: ((git.password))
+    branch: main
 - name: tanzu-e2e
   type: git
   source:
@@ -57,3 +59,6 @@ jobs:
       TBS_KUBECONFIG: ((kubeconfig))
       IMAGE_NAME: ((image_name))
       DEPLOYMENT_MANIFEST: ((deployment_manifest))
+  - put: cluster-repo
+    params:
+      repository: cluster-repo

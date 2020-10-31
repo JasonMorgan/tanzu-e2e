@@ -3,7 +3,7 @@ platform: linux
 image_resource:
   type: registry-image
   source: 
-    repository: rjmo/tanzu-e2e
+    repository: rjmo/tanzu-e2e # Change this to a python container.
 
 inputs:
   - name: cluster-repo
