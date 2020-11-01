@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -e
 
 echo "$TBS_KUBECONFIG" | base64 -d > ~/config
 export KUBECONFIG=~/config
