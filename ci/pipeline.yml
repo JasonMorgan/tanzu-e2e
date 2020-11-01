@@ -51,7 +51,6 @@ jobs:
   - get: source
     trigger: true
     passed:
-    - testing
     - build
   - task: update-cluster-config
     file: tanzu-e2e/ci/tasks/update-repo.yaml
