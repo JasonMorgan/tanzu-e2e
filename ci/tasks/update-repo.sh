@@ -13,6 +13,6 @@ echo -n "$CONTENT" > cluster-repo/"$DEPLOYMENT_MANIFEST"
 pushd cluster-repo || exit 1
 git config user.email "concourse@59s.io"
 git config user.name "concourse-ci"
-git add "$DEPLOYMENT_MANIFEST"
+git add .
 git commit -m "Manifest updated by concourse pipeline."
 popd || exit 1
