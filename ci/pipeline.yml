@@ -2,7 +2,7 @@ resources:
 - name: source
   type: git
   source:
-    uri: https://github.com/jasonmorgan/spring-petclinic.git
+    uri: ((git_repo))
     branch: main
 - name: cluster-repo
   type: git
