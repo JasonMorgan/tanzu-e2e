@@ -1,0 +1,63 @@
+resources:
+- name: source
+  type: git
+  source:
+    uri: https://github.com/jasonmorgan/spring-petclinic.git
+    branch: main
+- name: cluster-repo
+  type: git
+  source:
+    uri: https://github.com/JasonMorgan/tanzu-cluster-config.git
+    username: ((git.username))
+    password: ((git.password))
+    branch: main
+- name: tanzu-e2e
+  type: git
+  source:
+    uri: https://github.com/jasonmorgan/tanzu-e2e.git
+
+jobs:
+- name: testing
+  plan:
+  - get: source
+    trigger: true
+  - get: tanzu-e2e
+  - task: run-tests
+    file: tanzu-e2e/ci/tasks/run-tests.yaml
+
+- name: build
+  plan:
+  - get: source
+    trigger: true
+    passed: 
+    - testing
+  - get: tanzu-e2e
+  - task: compile-code
+    file: tanzu-e2e/ci/tasks/compile.yaml
+  - task: handoff-to-tbs
+    params:
+      TBS_KUBECONFIG: ((kubeconfig))
+      IMAGE_NAME: ((image_name))
+      TAG: ((tag))
+      REG_USER: ((harbor.user))
+      REG_PASS: ((harbor.password))
+      REG_URL: ((harbor.reg))
+    file: tanzu-e2e/ci/tasks/handoff-to-tbs.yaml
+    
+- name: update-cluster-config
+  plan: 
+  - get: cluster-repo
+  - get: tanzu-e2e
+  - get: source
+    trigger: true
+    passed:
+    - build
+  - task: update-cluster-config
+    file: tanzu-e2e/ci/tasks/update-repo.yaml
+    params:
+      TBS_KUBECONFIG: ((kubeconfig))
+      IMAGE_NAME: ((image_name))
+      DEPLOYMENT_MANIFEST: ((deployment_manifest))
+  - put: cluster-repo
+    params:
+      repository: cluster-repo
